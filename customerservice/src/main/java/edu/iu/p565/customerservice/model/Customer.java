@@ -1,8 +1,12 @@
 package edu.iu.p565.customerservice.model;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class Customer {
     private int id;
+    @NotEmpty(message = "name can not be empty.")
     private String name;
+    @NotEmpty(message = "email can not be empty.")
     private String email;
 
 

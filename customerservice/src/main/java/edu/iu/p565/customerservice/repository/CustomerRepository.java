@@ -21,4 +21,27 @@ public class CustomerRepository {
         customers.add(customer);
         return id;
     }
+
+    public void update(Customer customer, int id){
+        Customer x = getCustomeById(id);
+        if(x != null){
+            x.setName(customer.getName());
+            x.setEmail(customer.getEmail());
+        } else {
+            throw new IllegalStateException("customer with this ID is not found.");
+        }
+    }
+
+    private Customer getCustomeById(int id) {
+        return customers.stream().filter(x -> x.getId() == id).findAny().orElse(null);
+    }
+
+    public void delete(int id){
+        Customer x = getCustomeById(id);
+        if(x != null){
+            customers.remove(x);
+        } else {
+            throw new IllegalStateException("customer with this ID is not found.");
+        }
+    }
 }
